@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <div th:if="${successMessage}" class="alert success">
+        <p th:text="${successMessage}"></p>
+    </div>
+
+    <h2 th:text="${product.title}"></h2>
+    <p><strong>Description:</strong> <span th:text="${product.description}"></span></p>
+    <p><strong>Starting Price:</strong> <span th:text="${product.startingPrice}"></span></p>
+    <p><strong>Current Bid:</strong> <span th:text="${product.currentBid}"></span></p>
+    <p><strong>Seller ID:</strong> <span th:text="${product.sellerId}"></span></p>
+
+
+    <hr>
+    <h3>Contact Seller</h3>
+    <form th:action="@{'/sendMessage/' + ${product.id}}" method="post" class="form-box">
+        <label>Your Name:</label>
+        <input type="text" name="senderName" required />
+
+        <label>Your Message:</label>
+        <textarea name="content" rows="4" required></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+
+    <hr>
+    <h3>Messages</h3>
+    <ul class="message-list">
+        <li th:each="msg : ${messages}">
+            <strong th:text="${msg.senderName}">Sender</strong>: 
+            <span th:text="${msg.content}">Message content</span>
+            <em th:text="${msg.sentTime}">Time</em>
+        </li>
+    </ul>
+
+    <a th:href="@{/}">← Back</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Marketplace - All Products</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Second-Hand Marketplace</h1>
+        <a class="btn-add" th:href="@{/newProduct}">+ Add New Product</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Current Bid</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.title}"></td>
+                    <td th:text="${product.currentBid}"></td>
+                    <td>
+                        <a th:href="@{'/product/' + ${product.id}}">View</a> |
+                        <a th:href="@{'/editProduct/' + ${product.id}}">Edit</a> |
+                        <a th:href="@{'/deleteProduct/' + ${product.id}}">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

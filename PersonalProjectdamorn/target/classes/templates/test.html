@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Session Test</title>
+</head>
+<body>
+    <h2>Session Info</h2>
+    <p th:text="${session.myTest}"></p>
+    <p th:text="${session.sessionId}"></p>
+    <a th:href="@{/test}">Refresh</a> | <a th:href="@{/retest}">Invalidate Session</a>
+</body>
+</html>
